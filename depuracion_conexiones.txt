@@ -1,0 +1,3 @@
+Línea 6: Pereira,Armenia,45 -> repetida (línea 2); se descarta
+Línea 7: Manizales,Manizales,0 -> conecta una ciudad consigo misma; se descarta
+Línea 8: Cartago,Pereira,30 -> distancia distinta a la de la línea 5 (25); se conserva la de la línea 5

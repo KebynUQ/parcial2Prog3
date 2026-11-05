@@ -1,0 +1,15 @@
+=== Alcance desde Armenia ===
+Paso 0: Armenia
+Paso 1: Armenia, Cartago, Pereira
+Paso 2: Armenia, Cartago, Manizales, Pereira
+Se estabiliza en el paso 2
+
+=== Alcance desde Cartago ===
+Paso 0: Cartago
+Paso 1: Armenia, Cartago, Pereira
+Paso 2: Armenia, Cartago, Manizales, Pereira
+Se estabiliza en el paso 2
+
+=== Alcance desde Armenia ===
+No se calcula: ciudad inexistente en el grafo
+

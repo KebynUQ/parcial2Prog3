@@ -1,0 +1,2 @@
+Línea 9: Cartago,La Tebaida,abc -> distancia no numérica o negativa
+Línea 10: Armenia,Quimbaya -> se esperaban ciudad_a,ciudad_b,distancia
