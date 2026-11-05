@@ -1,0 +1,10 @@
+# ciudad_a,ciudad_b,distancia_km
+Armenia,Pereira,45
+Pereira,Manizales,52
+Armenia,Cartago,60
+Cartago,Pereira,25
+Pereira,Armenia,45
+Manizales,Manizales,0
+Cartago,Pereira,30
+Cartago,La Tebaida,abc
+Armenia,Quimbaya
