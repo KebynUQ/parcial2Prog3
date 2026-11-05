@@ -68,7 +68,9 @@ defmodule Ciudades do
       |> Stream.map(fn {linea, numero} -> {limpiar(linea), numero} end)
       |> Stream.filter(fn {linea, _} -> linea != "" and String.first(linea) != "#" end)
       |> Stream.map(fn {linea, numero} -> {String.split(linea, ","), linea, numero} end)
-      |> Enum.each(fn {campos, linea, numero} -> resolver_consulta(campos, linea, numero, grafo) end)
+      |> Enum.each(fn {campos, linea, numero} ->
+        resolver_consulta(campos, linea, numero, grafo)
+      end)
     else
       mensaje = "Falta conexiones.csv o consultas.txt"
       IO.puts(mensaje)
@@ -94,7 +96,9 @@ defmodule Ciudades do
     end)
     |> Enum.reduce([], fn resultado, validas ->
       case resultado do
-        {:ok, conexion} -> validas ++ [conexion]
+        {:ok, conexion} ->
+          validas ++ [conexion]
+
         {:error, numero, linea, motivo} ->
           escribir(@errores, "Línea #{numero}: #{linea} -> #{motivo}")
           validas
@@ -110,7 +114,9 @@ defmodule Ciudades do
   defp depurar([conexion | resto], vistas, buenas, avisos) do
     cond do
       conexion.origen == conexion.destino ->
-        aviso = "Línea #{conexion.numero}: #{conexion.texto} -> conecta una ciudad consigo misma; se descarta"
+        aviso =
+          "Línea #{conexion.numero}: #{conexion.texto} -> conecta una ciudad consigo misma; se descarta"
+
         depurar(resto, vistas, buenas, avisos ++ [aviso])
 
       true ->
@@ -146,13 +152,14 @@ defmodule Ciudades do
   # construir_grafo/1: recibe conexiones y devuelve los vecinos de cada ciudad.
   defp construir_grafo(conexiones) do
     Enum.reduce(conexiones, %{}, fn conexion, grafo ->
-      grafo = Map.update(grafo, conexion.origen,
-        [{conexion.destino, conexion.distancia}],
-        fn vecinos -> vecinos ++ [{conexion.destino, conexion.distancia}] end)
+      grafo =
+        Map.update(grafo, conexion.origen, [{conexion.destino, conexion.distancia}], fn vecinos ->
+          vecinos ++ [{conexion.destino, conexion.distancia}]
+        end)
 
-      Map.update(grafo, conexion.destino,
-        [{conexion.origen, conexion.distancia}],
-        fn vecinos -> vecinos ++ [{conexion.origen, conexion.distancia}] end)
+      Map.update(grafo, conexion.destino, [{conexion.origen, conexion.distancia}], fn vecinos ->
+        vecinos ++ [{conexion.origen, conexion.distancia}]
+      end)
     end)
   end
 
@@ -257,15 +264,26 @@ defmodule Ciudades do
     rutas
     |> Enum.with_index(1)
     |> Enum.each(fn {ruta, numero} ->
-      mostrar("Ruta #{numero}: #{Enum.join(ruta.ciudades, " -> ")} (#{length(ruta.ciudades)} ciudades, #{ruta.distancia} km)")
+      mostrar(
+        "Ruta #{numero}: #{Enum.join(ruta.ciudades, " -> ")} (#{length(ruta.ciudades)} ciudades, #{ruta.distancia} km)"
+      )
     end)
 
     mostrar("Número de rutas: #{length(rutas)}")
     [corta | _] = Enum.sort_by(rutas, fn ruta -> length(ruta.ciudades) end)
-    rutas_cortas = Enum.filter(rutas, fn ruta -> length(ruta.ciudades) == length(corta.ciudades) end)
-    Enum.each(rutas_cortas, fn ruta -> mostrar("Ruta más corta: #{Enum.join(ruta.ciudades, " -> ")}") end)
+
+    rutas_cortas =
+      Enum.filter(rutas, fn ruta -> length(ruta.ciudades) == length(corta.ciudades) end)
+
+    Enum.each(rutas_cortas, fn ruta ->
+      mostrar("Ruta más corta: #{Enum.join(ruta.ciudades, " -> ")}")
+    end)
+
     [menor | _] = Enum.sort_by(rutas, fn ruta -> ruta.distancia end)
-    mostrar("Ruta de menor distancia: #{Enum.join(menor.ciudades, " -> ")} (#{menor.distancia} km)")
+
+    mostrar(
+      "Ruta de menor distancia: #{Enum.join(menor.ciudades, " -> ")} (#{menor.distancia} km)"
+    )
   end
 
   # mostrar/1: imprime una línea y la agrega al archivo de resultados.
