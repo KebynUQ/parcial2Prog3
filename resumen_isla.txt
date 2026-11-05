@@ -1,0 +1,11 @@
+Número total de rutas: 4
+Ruta más corta: 8 movimientos; {1,1} -> {2,1} -> {3,1} -> {4,1} -> {5,1} -> {5,2} -> {5,3} -> {5,4} -> {5,5}
+Ruta de menor costo: costo 10 (10 movimientos); {1,1} -> {1,2} -> {1,3} -> {1,4} -> {1,5} -> {2,5} -> {3,5} -> {3,4} -> {4,4} -> {5,4} -> {5,5}
+Mapa con la ruta de menor costo:
+~ ~ ~ ~ ~ ~ ~
+~ P * * * * ~
+~ R T T T * ~
+~ D C T * * ~
+~ R T C * T ~
+~ C D C * B ~
+~ ~ ~ ~ ~ ~ ~
