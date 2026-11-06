@@ -1,0 +1,9 @@
+# simbolo,nombre,transitable,costo
+C,camino,si,1
+A,arena,si,1
+D,terreno difícil,si,2
+R,terreno rocoso,si,3
+T,árbol,no,0
+~,agua,no,0
+P,inicio,si,0
+B,bote,si,1

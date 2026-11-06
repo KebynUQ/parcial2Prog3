@@ -11,6 +11,6 @@ Forma 1: comienza en {1,1}, termina en {5,5}, dirección abajo-derecha
 {1,1} -> {2,2} -> {3,3} -> {4,4} -> {5,5}
 
 Palabra: PYTHON
-Encontrada: No (descartada: la sopa no tiene H, Y)
+Encontrada: No (descartada: la sopa no tiene Y, H)
 
 Palabras encontradas: 2 de 3

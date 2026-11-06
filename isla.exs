@@ -43,6 +43,8 @@ defmodule Isla do
 
         escribir(@resumen, "La isla es inválida; no se buscaron rutas.")
       else
+         escribir(@validacion, "La isla es válida")
+        IO.puts("La isla es válida")
         [origen] = personas
         [destino] = botes
         casillas = construir_casillas(filas)

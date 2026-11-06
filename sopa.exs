@@ -5,6 +5,13 @@ defmodule Sopa do
   @palabras Path.join(__DIR__, "palabras.txt")
   @salida Path.join(__DIR__, "resultado_sopa.txt")
 
+  @direcciones [
+    {"derecha", 0, 1}, {"izquierda", 0, -1},
+    {"abajo", 1, 0}, {"arriba", -1, 0},
+    {"abajo-derecha", 1, 1}, {"abajo-izquierda", 1, -1},
+    {"arriba-derecha", -1, 1}, {"arriba-izquierda", -1, -1}
+  ]
+
   @doc "Lee sopa y palabras, escribe resultados y devuelve `:ok`."
   def main do
     File.write(@salida, "")
@@ -21,16 +28,10 @@ defmodule Sopa do
         palabras = leer_palabras()
         mapa = crear_mapa(filas)
         disponibles = contar_filas(filas, %{})
-        direcciones = [
-          {"derecha", 0, 1}, {"izquierda", 0, -1},
-          {"abajo", 1, 0}, {"arriba", -1, 0},
-          {"abajo-derecha", 1, 1}, {"abajo-izquierda", 1, -1},
-          {"arriba-derecha", -1, 1}, {"arriba-izquierda", -1, -1}
-        ]
 
         encontradas =
           Enum.reduce(palabras, 0, fn palabra, total ->
-            if procesar_palabra(palabra, filas, mapa, disponibles, direcciones) do
+            if procesar_palabra(palabra, filas, mapa, disponibles, @direcciones) do
               total + 1
             else
               total
@@ -137,23 +138,25 @@ defmodule Sopa do
     end
   end
 
-  # motivo/1: recibe faltantes y devuelve el texto que explica el descarte.
+   # motivo/1: recibe faltantes y devuelve el texto que explica el descarte.
   defp motivo(faltan) do
-    if Enum.all?(faltan, fn {_letra, _necesita, tiene} -> tiene == 0 end) do
-      letras = faltan
-        |> Enum.map(fn {letra, _, _} -> letra end)
-        |> Enum.sort()
-        |> Enum.join(", ")
-      "la sopa no tiene #{letras}"
-    else
-      detalle = faltan
-        |> Enum.map(fn {letra, necesita, tiene} ->
-          "#{letra} (necesita #{necesita}, hay #{tiene})"
-        end)
-        |> Enum.join(", ")
-      "faltan letras o repeticiones: #{detalle}"
-    end
+    if todas_ausentes(faltan),
+      do: "la sopa no tiene #{letras_texto(faltan)}",
+      else: "faltan letras o repeticiones: #{detalle_texto(faltan)}"
   end
+
+  # todas_ausentes/1: true si ninguna letra faltante está en la sopa.
+  defp todas_ausentes([]), do: true
+  defp todas_ausentes([{_letra, _necesita, tiene} | resto]), do: tiene == 0 and todas_ausentes(resto)
+
+  # letras_texto/1: une las letras faltantes con comas.
+  defp letras_texto([{letra, _, _}]), do: letra
+  defp letras_texto([{letra, _, _} | resto]), do: letra <> ", " <> letras_texto(resto)
+
+  # detalle_texto/1: describe cuántas veces se necesita y hay cada letra.
+  defp detalle_texto([{letra, necesita, tiene}]), do: "#{letra} (necesita #{necesita}, hay #{tiene})"
+  defp detalle_texto([{letra, necesita, tiene} | resto]),
+    do: "#{letra} (necesita #{necesita}, hay #{tiene}), " <> detalle_texto(resto)
 
   # buscar_filas/6: recibe filas, índice, palabra, mapa, direcciones y formas;
   # devuelve las formas. Con [] termina; con una fila busca y pasa el resto.
