@@ -138,7 +138,7 @@ defmodule Sopa do
     end
   end
 
-   # motivo/1: recibe faltantes y devuelve el texto que explica el descarte.
+  # motivo/1: recibe faltantes y devuelve el texto que explica el descarte.
   defp motivo(faltan) do
     if todas_ausentes(faltan),
       do: "la sopa no tiene #{letras_texto(faltan)}",
