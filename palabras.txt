@@ -1,0 +1,6 @@
+# palabras a buscar
+ELIXIR
+
+    costa
+Elixir
+PYTHON

@@ -1,0 +1,16 @@
+Palabra: ELIXIR
+Encontrada: Sí (2 formas)
+Forma 1: comienza en {0,0}, termina en {0,5}, dirección derecha
+{0,0} -> {0,1} -> {0,2} -> {0,3} -> {0,4} -> {0,5}
+Forma 2: comienza en {5,6}, termina en {0,6}, dirección arriba
+{5,6} -> {4,6} -> {3,6} -> {2,6} -> {1,6} -> {0,6}
+
+Palabra: COSTA
+Encontrada: Sí (1 forma)
+Forma 1: comienza en {1,1}, termina en {5,5}, dirección abajo-derecha
+{1,1} -> {2,2} -> {3,3} -> {4,4} -> {5,5}
+
+Palabra: PYTHON
+Encontrada: No (descartada: la sopa no tiene H, Y)
+
+Palabras encontradas: 2 de 3
