@@ -13,17 +13,25 @@ defmodule Conexion do
         if origen == "" or destino == "" do
           {:error, "ciudad vacía"}
         else
-          case Integer.parse(String.trim(distancia_texto)) do
+          texto = String.trim(distancia_texto)
+
+          case Integer.parse(texto) do
             {distancia, ""} when distancia >= 0 ->
               {:ok, %Conexion{origen: origen, destino: destino, distancia: distancia}}
 
+            {_distancia, ""} ->
+              {:error, "distancia negativa"}
+
             _ ->
-              case Float.parse(String.trim(distancia_texto)) do
+              case Float.parse(texto) do
                 {distancia, ""} when distancia >= 0 ->
                   {:ok, %Conexion{origen: origen, destino: destino, distancia: distancia}}
 
+                {_distancia, ""} ->
+                  {:error, "distancia negativa"}
+
                 _ ->
-                  {:error, "distancia no numérica o negativa"}
+                  {:error, "distancia no numérica"}
               end
           end
         end
