@@ -92,8 +92,7 @@ defmodule Isla do
         nombre = String.trim(nombre)
         transitable = String.trim(transitable)
 
-        
-      cond do
+        cond do
           simbolo == "" ->
             {:error, "símbolo vacío"}
 
