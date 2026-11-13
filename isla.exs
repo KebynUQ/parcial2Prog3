@@ -1,4 +1,5 @@
 # Parcial 2, problema 2: escapar de la isla.
+# Mariana Rodriguez Maya, Kebyn Julian Ochoa Perez, Laura Vanessa Guerrero Blanco, Juan Jose Tellez Sanchez
 defmodule Terreno do
   @moduledoc "Guarda el símbolo, nombre, costo y posibilidad de paso de un terreno."
   defstruct simbolo: "", nombre: "", transitable: false, costo: 0

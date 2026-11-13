@@ -1,4 +1,5 @@
 # Parcial 2, problema 1: rutas entre ciudades.
+# Mariana Rodriguez Maya, Kebyn Julian Ochoa Perez, Laura Vanessa Guerrero Blanco, Juan Jose Tellez Sanchez
 defmodule Conexion do
   @moduledoc "Guarda una conexión entre dos ciudades y sus datos de origen."
   defstruct origen: "", destino: "", distancia: 0, numero: 0, texto: ""

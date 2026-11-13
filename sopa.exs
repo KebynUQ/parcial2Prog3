@@ -1,4 +1,5 @@
 # Parcial 2, problema 3: sopa de letras.
+# Mariana Rodriguez Maya, Kebyn Julian Ochoa Perez, Laura Vanessa Guerrero Blanco, Juan Jose Tellez Sanchez
 defmodule Sopa do
   @moduledoc "Valida palabras y las busca en una sopa de letras en ocho direcciones."
   @sopa Path.join(__DIR__, "sopa.txt")
